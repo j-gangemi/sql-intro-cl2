@@ -2,6 +2,29 @@
 -- NOTE: need more advanced SQL to answer this question without
 --       raising a warning: "Field of aggregated query neither grouped nor aggregated"
 
+select  
+    name
+    , first_name
+    , last_name
+    , max_hr
+from
+(
+    select
+        stats.id
+        , teams.name
+        , players.first_name
+        , players.last_name
+        , max(stats.home_runs) as max_hr
+    from teams
+        inner join stats on teams.id = stats.team_id
+        inner join players on stats.player_id = players.id
+    where year = 2019
+    group by 2,3,4
+    order by 5 desc
+)
+group by 1
+order by 1
+
 -- Expected result:
 --
 -- +-------------------------------+------------+-------------+----------------------+

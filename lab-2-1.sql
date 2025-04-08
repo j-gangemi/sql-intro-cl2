@@ -15,4 +15,17 @@
 -- | 2019 | New York Yankees       | 103  |
 -- +------+------------------------+------+
 
+--select
+--    count(*)
+--    from
+--(
+select
+    year
+    , name
+    , wins
+FROM teams
+where wins > 100
+order by year
+--)
+;
 
